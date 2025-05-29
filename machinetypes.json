@@ -1,0 +1,12 @@
+{
+  "small": {
+    "aws":    { "instance_type": "t2.micro",      "image": "ami-xxxxxx" },
+    "azure":  { "instance_type": "Standard_B1s",  "image": "azure-image-id" },
+    "aliyun": { "instance_type": "ecs.t5-lc2m1.nano", "image": "aliyun-image-id" }
+  },
+  "medium": {
+    "aws":    { "instance_type": "t3.medium",     "image": "ami-yyyyyy" },
+    "azure":  { "instance_type": "Standard_B2s",  "image": "azure-image-id2" },
+    "aliyun": { "instance_type": "ecs.c5.large",  "image": "aliyun-image-id2" }
+  }
+}

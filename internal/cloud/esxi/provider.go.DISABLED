@@ -1,0 +1,49 @@
+package esxi
+
+import (
+	"github.com/pkg/errors"
+	"yunion.io/x/cloudmux/pkg/multicloud/esxi"
+
+	"github.com/mistcommunity/cloud-vm-api/internal/auth"
+	"github.com/mistcommunity/cloud-vm-api/internal/config"
+)
+
+type ESXiProvider struct {
+	client *esxi.SESXiClient
+	Host   *esxi.SHost
+}
+
+func NewESXiProvider(env *config.Environment, creds *auth.Credentials) (*ESXiProvider, error) {
+	cfg := esxi.NewESXiClientConfig(
+		"host",
+		443,
+		creds.AccessKey,
+		creds.Secret,
+	)
+
+	cfg.Debug(true)
+
+	client, err := esxi.NewESXiClient(cfg)
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to create ESXi client")
+	}
+
+	dc, err := client.GetDatacenter("")
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to get ESXi datacenter")
+	}
+
+	// Assuming first host for simplicity
+	hosts, err := dc.GetIHosts()
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to get ESXi hosts")
+	}
+	if len(hosts) == 0 {
+		return nil, errors.New("no hosts found")
+	}
+
+	return &ESXiProvider{
+		client: client,
+		Host:   hosts[0].(*esxi.SHost),
+	}, nil
+}
