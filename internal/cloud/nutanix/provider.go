@@ -15,7 +15,7 @@ type NutanixProvider struct {
 
 func NewNutanixProvider(env *config.Environment, creds *auth.Credentials) (*NutanixProvider, error) {
 	cfg := nutanix.NewNutanixClientConfig(
-		"host",
+		env.Host,
 		creds.AccessKey,
 		creds.Secret,
 		9440,

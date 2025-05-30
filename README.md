@@ -20,14 +20,15 @@ go run cmd/main.go
 
 Create a VM by sending a POST request to /vm:
 
+### ProxmoxVE
 ```bash
 curl -X POST http://localhost:8080/vm \
-  -H "Authorization: Bearer <base64-encoded-credentials>" \
+  -H "Authorization: Bearer eyJzZWNyZXQiOiJRd2VydHk3ISIsImFjY2Vzc19rZXkiOiJyb290QHBhbSJ9" \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "myvm",
-    "environment": "aws-dev",
-    "machinetype": "small",
+    "name": "test1",
+    "environment": "pve-test1",
+    "machinetype": "medium",
     "cloud_init": "#cloud-config\nusers:\n  - name: dev\n    sudo: ALL=(ALL) NOPASSWD:ALL"
   }'
 ```

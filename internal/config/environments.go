@@ -13,7 +13,7 @@ type Environment struct {
 	Region         string `json:"region,omitempty"`
 	AccountId      string `json:"account_id,omitempty"`
 	SubscriptionId string `json:"subscription_id,omitempty"`
-	ApiUrl         string `json:"api_url,omitempty"`
+	Host           string `json:"host,omitempty"`
 	NetworkId      string `json:"network_id,omitempty"`
 	Subnet         string `json:"subnet,omitempty"`
 }
