@@ -178,12 +178,17 @@ func (self *SHost) GetVersion() string {
 
 func (self *SHost) CreateVM(opts *cloudprovider.SManagedVMCreateConfig) (cloudprovider.ICloudVM, error) {
 
-	vmId := self.zone.region.GetClusterVmMaxId()
+	// vmId := self.zone.region.GetClusterVmMaxId()
+	vmId := 101
 	if vmId == -1 {
 		return nil, errors.Errorf("failed to get vm number by %d", vmId)
 	} else {
 		vmId++
 	}
+
+	fmt.Printf("DEBUG: CreateVM , opts: %v\r\n", opts)
+	fmt.Printf("DEBUG: CreateVM , opts.SysDisk: %v\r\n", opts.SysDisk)
+	fmt.Printf("DEBUG: CreateVM , opts.SysDisk.StorageExternalId: %v\r\n", opts.SysDisk.StorageExternalId)
 
 	splited := strings.Split(opts.SysDisk.StorageExternalId, "/")
 	storage := splited[2]
@@ -202,6 +207,8 @@ func (self *SHost) CreateVM(opts *cloudprovider.SManagedVMCreateConfig) (cloudpr
 		"scsihw":      "virtio-scsi-pci",
 		"scsi0":       fmt.Sprintf("%s:%d", storage, opts.SysDisk.SizeGB),
 	}
+
+	fmt.Printf("DEBUG: CreateVM , Node: %v\r\n", self.Node)
 
 	res := fmt.Sprintf("/nodes/%s/qemu", self.Node)
 	_, err := self.zone.region.post(res, jsonutils.Marshal(body))

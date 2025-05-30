@@ -8,14 +8,15 @@ import (
 )
 
 type Environment struct {
-	Name           string `json:"name"`
-	Cloud          string `json:"cloud"`
-	Region         string `json:"region,omitempty"`
-	AccountId      string `json:"account_id,omitempty"`
-	SubscriptionId string `json:"subscription_id,omitempty"`
-	Host           string `json:"host,omitempty"`
-	NetworkId      string `json:"network_id,omitempty"`
-	Subnet         string `json:"subnet,omitempty"`
+	Name              string `json:"name"`
+	Cloud             string `json:"cloud"`
+	Region            string `json:"region,omitempty"`
+	AccountId         string `json:"account_id,omitempty"`
+	SubscriptionId    string `json:"subscription_id,omitempty"`
+	Host              string `json:"host,omitempty"`
+	NetworkId         string `json:"network_id,omitempty"`
+	Subnet            string `json:"subnet,omitempty"`
+	StorageExternalId string `json:"storage_external_id,omitempty"`
 }
 
 var environments []Environment

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "aws-test1",
+    "cloud": "aws",
+    "region": "eu-west-3",
+    "network_id": "foo"
+  },
+  {
+    "name": "ntnx-test1",
+    "cloud": "nutanix",
+    "project": "test",
+    "host": "https://nutanix.domain.local:9440",
+    "subnet": "test"
+  },
+  {
+    "name": "pve-test1",
+    "cloud": "proxmox",
+    "host": "192.168.8.136",
+    "storage_external_id": "storage/pve/local-lvm"
+  }
+]

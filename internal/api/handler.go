@@ -82,6 +82,13 @@ func CreateVMHandler(w http.ResponseWriter, r *http.Request) {
 		ExternalNetworkId: env.NetworkId,
 		ExternalVpcId:     env.Subnet,
 		UserData:          req.CloudInit,
+		SysDisk: cloudprovider.SDiskInfo{
+			StorageExternalId: env.StorageExternalId,
+			SizeGB:            10,
+		},
+		Cpu:            2,
+		MemoryMB:       2048,
+		OsDistribution: "debian",
 		// Fill more fields if you want, eg. SysDisk, Cpu, MemoryMB...
 	}
 
