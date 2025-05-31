@@ -17,18 +17,20 @@ go run cmd/main.go
 ```
 
 ## Usage
+Bearer token for all platforms are created with command like:
+```bash
+echo '{"access_key":"<access key / username>","secret":"<secret / password>"}' | base64 -w 0
+```
 
 Create a VM by sending a POST request to /vm:
-
-### ProxmoxVE
 ```bash
 curl -X POST http://localhost:8080/vm \
-  -H "Authorization: Bearer eyJzZWNyZXQiOiJRd2VydHk3ISIsImFjY2Vzc19rZXkiOiJyb290QHBhbSJ9" \
+  -H "Authorization: Bearer <Bearer token>" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "test1",
-    "environment": "pve-test1",
-    "machinetype": "medium",
+    "environment": "<env name>",
+    "machinetype": "medium-debian",
     "cloud_init": "#cloud-config\nusers:\n  - name: dev\n    sudo: ALL=(ALL) NOPASSWD:ALL"
   }'
 ```
