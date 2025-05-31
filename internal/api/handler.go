@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -66,6 +67,8 @@ func CreateVMHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid machinetype for this cloud: "+err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	fmt.Println("Registered Cloudmux providers:", cloudprovider.GetRegistedProviderIds())
 
 	// Get cloud provider
 	provider, err := cloud.NewCloudProvider(env, creds)

@@ -24,6 +24,15 @@ echo '{"access_key":"<access key / username>","secret":"<secret / password>"}' |
 
 Create a VM by sending a POST request to /vm:
 ```bash
+cloud_init=$(cat <<EOF | base64
+#cloud-config
+users:
+- name: dev
+  sudo: ALL=(ALL) NOPASSWD:ALL
+EOF
+)
+echo $cloud_init
+
 curl -X POST http://localhost:8080/vm \
   -H "Authorization: Bearer <Bearer token>" \
   -H "Content-Type: application/json" \
@@ -31,7 +40,7 @@ curl -X POST http://localhost:8080/vm \
     "name": "test1",
     "environment": "<env name>",
     "machinetype": "medium-debian",
-    "cloud_init": "#cloud-config\nusers:\n  - name: dev\n    sudo: ALL=(ALL) NOPASSWD:ALL"
+    "cloud_init": "<base64 encoded cloud init>"
   }'
 ```
 

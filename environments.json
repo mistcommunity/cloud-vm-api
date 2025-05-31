@@ -1,32 +1,32 @@
 [
   {
-    "name": "ali-test1",
-    "cloud": "AWS",
-    "url": "InternationalCloud",
-    "region": "eu-west-3",
-    "network_id": "subnet-0e5fbdb1ac4a8dead",
-    "vpc_id": "vpc-09ece8e3b2134782f"
+      "name": "ali-test1",
+      "cloud": "Alibaba",
+      "url": "InternationalCloud",
+      "region": "eu-west-3",
+      "network_id": "subnet-0e5fbdb1ac4a8dead",
+      "vpc_id": "vpc-09ece8e3b2134782f"
   },
   {
-    "name": "aws-test1",
-    "cloud": "AWS",
-    "url": "",
-    "region": "eu-west-3",
-    "network_id": "subnet-0e5fbdb1ac4a8dead",
-    "vpc_id": "vpc-09ece8e3b2134782f"
+      "name": "aws-test1",
+      "cloud": "Aws",
+      "url": "",
+      "region": "eu-west-3",
+      "network_id": "subnet-0e5fbdb1ac4a8dead",
+      "vpc_id": "vpc-09ece8e3b2134782f"
   },
   {
-    "name": "ntnx-test1",
-    "cloud": "nutanix",
-    "project": "test",
-    "url": "https://nutanix.domain.local:9440",
-    "vpc_id": "test"
+      "name": "ntnx-test1",
+      "cloud": "nutanix",
+      "project": "test",
+      "url": "https://nutanix.domain.local:9440",
+      "vpc_id": "test"
   },
   {
-    "name": "pve-test1",
-    "cloud": "proxmox",
-    "host": "192.168.8.136",
-    "storage_external_id": "storage/pve/local-lvm",
-    "vpc_id": ""
+      "name": "pve-test1",
+      "cloud": "proxmox",
+      "host": "192.168.8.136",
+      "storage_external_id": "storage/pve/local-lvm",
+      "vpc_id": ""
   }
 ]
