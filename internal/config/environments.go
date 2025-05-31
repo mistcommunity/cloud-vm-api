@@ -15,7 +15,7 @@ type Environment struct {
 	SubscriptionId    string `json:"subscription_id,omitempty"`
 	Host              string `json:"host,omitempty"`
 	NetworkId         string `json:"network_id,omitempty"`
-	Subnet            string `json:"subnet,omitempty"`
+	VpcId             string `json:"vpc_id,omitempty"`
 	StorageExternalId string `json:"storage_external_id,omitempty"`
 }
 

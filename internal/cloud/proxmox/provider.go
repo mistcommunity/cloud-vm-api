@@ -25,8 +25,7 @@ func NewProxmoxProvider(env *config.Environment, creds *auth.Credentials) (*Prox
 	)
 
 	providerCfg := cloudprovider.ProviderConfig{
-		Name:          "node/pve",
-		DefaultRegion: "node/pve",
+		Name: "node/pve",
 	}
 	cfg.CloudproviderConfig(providerCfg)
 

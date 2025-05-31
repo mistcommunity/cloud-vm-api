@@ -3,19 +3,21 @@
     "name": "aws-test1",
     "cloud": "aws",
     "region": "eu-west-3",
-    "network_id": "vpc-09ece8e3b2134782f"
+    "network_id": "subnet-0e5fbdb1ac4a8dead",
+    "vpc_id": "vpc-09ece8e3b2134782f"
   },
   {
     "name": "ntnx-test1",
     "cloud": "nutanix",
     "project": "test",
     "host": "https://nutanix.domain.local:9440",
-    "subnet": "test"
+    "vpc_id": "test"
   },
   {
     "name": "pve-test1",
     "cloud": "proxmox",
     "host": "192.168.8.136",
-    "storage_external_id": "storage/pve/local-lvm"
+    "storage_external_id": "storage/pve/local-lvm",
+    "vpc_id": ""
   }
 ]

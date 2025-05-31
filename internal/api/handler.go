@@ -80,7 +80,7 @@ func CreateVMHandler(w http.ResponseWriter, r *http.Request) {
 		ExternalImageId:   mtConfig.Image,
 		InstanceType:      mtConfig.InstanceType,
 		ExternalNetworkId: env.NetworkId,
-		ExternalVpcId:     env.Subnet,
+		ExternalVpcId:     env.VpcId,
 		UserData:          req.CloudInit,
 		SysDisk: cloudprovider.SDiskInfo{
 			StorageExternalId: env.StorageExternalId,
