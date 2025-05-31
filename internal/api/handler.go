@@ -67,12 +67,30 @@ func CreateVMHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Get host (from cloudmux)
-	host, err := cloud.NewCloudProvider(env, creds)
+	// Get cloud provider
+	provider, err := cloud.NewCloudProvider(env, creds)
 	if err != nil {
 		http.Error(w, "Failed to initialize cloud provider: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	// Get region - usually you need region ID from env or config
+	regionId := env.Region
+	region, err := provider.GetIRegionById(regionId)
+	if err != nil {
+		http.Error(w, "Failed to get region: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Get host (usually the first host)
+	hosts, err := region.GetIHosts()
+	if err != nil || len(hosts) == 0 {
+		http.Error(w, "No hosts found in region", http.StatusInternalServerError)
+		return
+	}
+	host := hosts[0] // Or select by your own criteria
+
+	// Now you can use host.CreateVM(vmConfig) as before
 
 	// Compose VM config for cloudmux
 	vmConfig := &cloudprovider.SManagedVMCreateConfig{
