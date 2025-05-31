@@ -22,6 +22,13 @@ Bearer token for all platforms are created with command like:
 echo '{"access_key":"<access key / username>","secret":"<secret / password>"}' | base64 -w 0
 ```
 
+### List VMs
+```bash
+curl -X GET http://localhost:8080/vm?environment=aws-test1 \
+  -H "Authorization: Bearer <Bearer token>"
+```
+
+### Create VM
 Create a VM by sending a POST request to /vm:
 ```bash
 cloud_init=$(cat <<EOF | base64

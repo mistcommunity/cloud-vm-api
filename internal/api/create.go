@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/gorilla/mux"
 	"github.com/mistcommunity/cloud-vm-api/internal/auth"
 	"github.com/mistcommunity/cloud-vm-api/internal/cloud"
 	"github.com/mistcommunity/cloud-vm-api/internal/config"
@@ -23,12 +22,6 @@ type VMCreateResponse struct {
 	ID     string `json:"id"`
 	Name   string `json:"name"`
 	Status string `json:"status"`
-}
-
-func NewRouter() *mux.Router {
-	r := mux.NewRouter()
-	r.HandleFunc("/vm", CreateVMHandler).Methods("POST")
-	return r
 }
 
 func CreateVMHandler(w http.ResponseWriter, r *http.Request) {
