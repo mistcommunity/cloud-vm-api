@@ -177,8 +177,6 @@ func (self *SHost) GetVersion() string {
 }
 
 func (self *SHost) CreateVM(opts *cloudprovider.SManagedVMCreateConfig) (cloudprovider.ICloudVM, error) {
-
-	// vmId := self.zone.region.GetClusterVmMaxId()
 	vmId := 101
 	if vmId == -1 {
 		return nil, errors.Errorf("failed to get vm number by %d", vmId)
@@ -211,7 +209,14 @@ func (self *SHost) CreateVM(opts *cloudprovider.SManagedVMCreateConfig) (cloudpr
 	fmt.Printf("DEBUG: CreateVM , Node: %v\r\n", self.Node)
 
 	res := fmt.Sprintf("/nodes/%s/qemu", self.Node)
-	_, err := self.zone.region.post(res, jsonutils.Marshal(body))
+	b2 := jsonutils.Marshal(body)
+	fmt.Printf("DEBUG: Request body: %v\r\n", b2)
+
+	fmt.Printf("DEBUG: self: %v\r\n", self)
+	fmt.Printf("DEBUG: self.zone: %v\r\n", self.zone)
+	fmt.Printf("DEBUG: self.zone.region: %v\r\n", self.zone.region)
+
+	_, err := self.zone.region.post(res, b2)
 	if err != nil {
 		return nil, err
 	}

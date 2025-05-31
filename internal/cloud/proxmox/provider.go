@@ -25,7 +25,8 @@ func NewProxmoxProvider(env *config.Environment, creds *auth.Credentials) (*Prox
 	)
 
 	providerCfg := cloudprovider.ProviderConfig{
-		Name: "pve",
+		Name:          "node/pve",
+		DefaultRegion: "node/pve",
 	}
 	cfg.CloudproviderConfig(providerCfg)
 
@@ -38,11 +39,13 @@ func NewProxmoxProvider(env *config.Environment, creds *auth.Credentials) (*Prox
 
 	region := client.GetRegion()
 	fmt.Printf("DEBUG: Found region: %v\r\n", region.GetName())
-	zone, err := region.GetZone()
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to get Proxmox zone")
-	}
-	fmt.Printf("DEBUG: Found zone: %v\r\n", zone.GetName())
+	/*
+		zone, err := region.GetZone()
+		if err != nil {
+			return nil, errors.Wrap(err, "failed to get Proxmox zone")
+		}
+		fmt.Printf("DEBUG: Found zone: %v\r\n", zone.GetName())
+	*/
 
 	hosts, err := region.GetHosts()
 	if err != nil {
@@ -52,12 +55,9 @@ func NewProxmoxProvider(env *config.Environment, creds *auth.Credentials) (*Prox
 		return nil, errors.New("no hosts found")
 	}
 
-	// &hosts[0]
-
-	// vmId := self.zone.region.GetClusterVmMaxId()
-
+	host := &hosts[0]
 	return &ProxmoxProvider{
 		client: client,
-		Host:   &proxmox.SHost{},
+		Host:   host,
 	}, nil
 }
