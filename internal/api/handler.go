@@ -63,7 +63,7 @@ func CreateVMHandler(w http.ResponseWriter, r *http.Request) {
 	// Look up machine type config
 	mtConfig, err := config.GetMachineTypeConfig(req.MachineType, env.Cloud)
 	if err != nil {
-		http.Error(w, "Invalid machinetype for this cloud", http.StatusBadRequest)
+		http.Error(w, "Invalid machinetype for this cloud: "+err.Error(), http.StatusBadRequest)
 		return
 	}
 
